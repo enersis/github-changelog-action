@@ -1,0 +1,45 @@
+name: 'Github changelog creator'
+description: 'Creates a changelog combined with Jira issues'
+author: 'Mansur Esmann'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+inputs:
+  max_jira_entrys:
+    description: 'Maximum amount of Jira Storys to read'
+    required: false
+    default: '10000'
+  jira_projects:
+    description: 'The Jira Project tags'
+    required: false
+    default: 'BA,CO2,HAN'
+  jira_host:
+    description: 'The Jira host'
+    required: false
+    default: 'enersis.atlassian.net'
+  git_range_from:
+    description: 'The branch to start a range compare'
+    required: false
+    default: 'origin/develop'
+  git_range_to:
+    description: 'The branch to end a range compare'
+    required: false
+    default: 'origin/master'
+  dry_run:
+    description: 'If the changelog shall be sended'
+    required: false
+    default: 'false'
+  user_token:
+    description: 'Your Jira Token ex user.name#org.tld:1234567890123 generated there'
+    required: true
+    default: 'user.name#org.tld:1234567890123'
+  webhook_url:
+    description: 'MS Teams webhook url generated there'
+    required: false
+    default: 'https://outlook.office.com/webhook/some-id'
+outputs:
+  changelog:
+    description: 'Generated changelog'
+branding:
+  icon: 'bell'  
+  color: 'green'
