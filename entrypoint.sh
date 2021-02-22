@@ -5,13 +5,13 @@ set -o pipefail
 
 # config
 MAXENTRYS=${INPUT_MAX_JIRA_ENTRYS:-10000}
-JIRA_PROJECTS=${env.JIRA_PROJECTS:-ABC,XYZ}
-REQ_HOST=${env.JIRA_HOST:-enersis.atlassian.net}
-GIT_RANGE_FROM=${env.GIT_RANGE_FROM:-origin/develop}
-GIT_RANGE_TO=${env.GIT_RANGE_TO:-origin/master}
-DRY_RUN=${env.DRY_RUN:-false}
-USER_TOKEN=${env.USER_TOKEN:-user.name#org.tld:1234567890123}
-WEBHOOK_URL=${env.WEBHOOK_URL:-https://outlook.office.com/webhook/some-id}
+JIRA_PROJECTS=${INPUT_JIRA_PROJECTS:-ABC,XYZ}
+REQ_HOST=${INPUT_JIRA_HOST:-enersis.atlassian.net}
+GIT_RANGE_FROM=${INPUT_GIT_RANGE_FROM:-origin/develop}
+GIT_RANGE_TO=${INPUT_GIT_RANGE_TO:-origin/master}
+DRY_RUN=${INPUT_DRY_RUN:-false}
+USER_TOKEN=${INPUT_USER_TOKEN:-user.name#org.tld:1234567890123}
+WEBHOOK_URL=${INPUT_WEBHOOK_URL:-https://outlook.office.com/webhook/some-id}
 
 #cd ${GITHUB_WORKSPACE}/${source}
 
