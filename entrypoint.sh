@@ -66,10 +66,10 @@ for i in $(echo $GIT_JIRA_COMMITS | sed "s/ / /g"); do SUMMARYLOG="$SUMMARYLOG \
 # CHANGELOGENTRYS=$(comm -12 <(echo $GIT_JIRA_COMMITS | tr ' ' '\n' | sort) <(echo $TICKETS | tr ' ' '\n' | sort))
 LLEFT=$(echo $GIT_JIRA_COMMITS | tr ' ' '\n' | sort)
 LRIGHT=$(echo $TICKETS | tr ' ' '\n' | sort)
-
+CHANGELOGENTRYS=$(comm -12 <(echo $LLEFT) <(echo $LRIGHT))
 echo $LLEFT
 echo $LRIGHT
-CHANGELOGENTRYS="TEST"
+#CHANGELOGENTRYS="TEST"
 #CHANGELOGENTRYS=$(sed 's/^/https:\/\/enersis.atlassian.net\/browse\//; s/$//' <(echo "$CHANGELOGENTRYS") | awk '$0="<a href="$0">"$0"</a>\r\n"')
 
 # genrate changelog
