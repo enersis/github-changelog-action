@@ -3,22 +3,19 @@
 set -o pipefail
 
 
-echo $INPUTS
-
-
 # config
-MAXENTRYS=${max_jira_entrys:-10000}
-JIRA_PROJECTS=${jira_projects:-ABC,XYZ}
-REQ_HOST=${jira_host:-enersis.atlassian.net}
-GIT_RANGE_FROM=${git_range_from:-origin/develop}
-GIT_RANGE_TO=${git_range_to:-origin/master}
-DRY_RUN=${dry_run:-false}
-USER_TOKEN=${user_token:-user.name#org.tld:1234567890123}
-WEBHOOK_URL=${webhook_url:-https://outlook.office.com/webhook/some-id}
+MAXENTRYS=${INPUT_MAX_JIRA_ENTRYS:-10000}
+JIRA_PROJECTS=${env.JIRA_PROJECTS:-ABC,XYZ}
+REQ_HOST=${env.JIRA_HOST:-enersis.atlassian.net}
+GIT_RANGE_FROM=${env.GIT_RANGE_FROM:-origin/develop}
+GIT_RANGE_TO=${env.GIT_RANGE_TO:-origin/master}
+DRY_RUN=${env.DRY_RUN:-false}
+USER_TOKEN=${env.USER_TOKEN:-user.name#org.tld:1234567890123}
+WEBHOOK_URL=${env.WEBHOOK_URL:-https://outlook.office.com/webhook/some-id}
 
 #cd ${GITHUB_WORKSPACE}/${source}
 
-echo "\t*** CONFIGURATION ***"
+echo -e "\t*** CONFIGURATION ***"
 echo -e "\tmax_jira_entrys: ${MAXENTRYS}"
 echo -e "\tjira_projects: ${JIRA_PROJECTS}"
 echo -e "\tjira_host: ${REQ_HOST}"
