@@ -13,7 +13,7 @@ DRY_RUN=${INPUT_DRY_RUN:-false}
 USER_TOKEN=${INPUT_USER_TOKEN:-user.name#org.tld:1234567890123}
 WEBHOOK_URL=${INPUT_WEBHOOK_URL:-https://outlook.office.com/webhook/some-id}
 
-#cd ${GITHUB_WORKSPACE}/${source}
+cd ${GITHUB_WORKSPACE}/${source}
 
 echo -e "\t*** CONFIGURATION ***"
 echo -e "\tmax_jira_entrys: ${MAXENTRYS}"
