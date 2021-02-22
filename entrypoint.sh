@@ -3,7 +3,7 @@
 set -o pipefail
 
 # config
-MAXENTRYS=${max_jira_entrys:-10000}
+MAXENTRYS=${inputs.max_jira_entrys:-10000}
 JIRA_PROJECTS=${jira_projects:-ABC,XYZ}
 REQ_HOST=${jira_host:-enersis.atlassian.net}
 GIT_RANGE_FROM=${git_range_from:-origin/develop}
