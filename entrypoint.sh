@@ -96,16 +96,6 @@ dry_run: ${DRY_RUN} \r\n
 EOF
 )
 
-# Use dryrun to determine the changelog
-if $DRY_RUN
-then
-    echo -e "$CHANGELOG"
-    exit 0
-else
-    echo -e "$CHANGELOG"
-    echo "Sending information ..."
-fi 
-
 TEAMS_JSON=$(cat << EOF
 {
         "@type": "MessageCard",
@@ -134,10 +124,21 @@ TEAMS_JSON=$(cat << EOF
 EOF
 )
 
+# Use dryrun to determine the changelog
+if $DRY_RUN
+then
+    echo -e "$CHANGELOG"
+    exit 0
+else
+    echo -e "$CHANGELOG"
+    echo "Sending information ..."
+fi 
+
+# Send changelog to NS Teams
 curl -H "Content-Type: application/json" -d "${TEAMS_JSON}" "${WEBHOOK_URL}"
 
 # Handle exit status
 echo "Finished ..."
 
-echo "::set-output name=changelog::${CHANGELOG}"
+echo -e "::set-output name=changelog::${CHANGELOG}"
 exit 0
