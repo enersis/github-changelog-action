@@ -16,7 +16,7 @@ inputs:
   jira_host:
     description: 'The Jira host'
     required: false
-    default: 'enersis.atlassian.net'
+    default: 'company.atlassian.net'
   git_range_from:
     description: 'The branch to start a range compare'
     required: false

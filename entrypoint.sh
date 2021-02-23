@@ -6,7 +6,7 @@ set -o pipefail
 # config
 MAXENTRYS=${INPUT_MAX_JIRA_ENTRYS:-10000}
 JIRA_PROJECTS=${INPUT_JIRA_PROJECTS:-ABC,XYZ}
-REQ_HOST=${INPUT_JIRA_HOST:-enersis.atlassian.net}
+REQ_HOST=${INPUT_JIRA_HOST:-company.atlassian.net}
 GIT_RANGE_FROM=${INPUT_GIT_RANGE_FROM:-origin/develop}
 GIT_RANGE_TO=${INPUT_GIT_RANGE_TO:-origin/master}
 DRY_RUN=${INPUT_DRY_RUN:-false}
