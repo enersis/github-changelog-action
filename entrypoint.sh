@@ -24,7 +24,7 @@ echo -e "\tgit_range_to: ${GIT_RANGE_TO}"
 echo -e "\tdry_run: ${DRY_RUN}"
 echo -e "\tuser_token: ${USER_TOKEN}"
 
-REQ_URL="http://${REQ_HOST}/rest/api/2/search?jql=project+in($JIRA_PROJECTS)%20and%20status%20!=%20Done&maxResults=49&fields=id,key,summary&startAt="
+REQ_URL="http://${REQ_HOST}/rest/api/2/search?jql=project+in($JIRA_PROJECTS)%20and%20issueType%20in%20(bug,%20story)&maxResults=49&fields=id,key,summary&startAt="
 # Changelog persistance to MS Teams
 TITLE=$(basename `git rev-parse --show-toplevel`)
 COLOR='ff0000'
