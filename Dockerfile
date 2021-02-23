@@ -7,4 +7,4 @@ COPY entrypoint.sh /entrypoint.sh
 
 RUN apk update && apk add bash git curl jq
 
-ENTRYPOINT ["sh", "/entrypoint.sh"]
+ENTRYPOINT ["/bin/bash", "-c", "/entrypoint.sh"]
