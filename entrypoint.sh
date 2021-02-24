@@ -139,7 +139,7 @@ else
     echo "Sending information ..."
 fi 
 
-if $FOUND_ENTRYS = 0
+if [[ $FOUND_ENTRYS -eq 0 ]]
 then
     echo -e "Nothing found ... aborting"
     exit 0
