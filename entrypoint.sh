@@ -14,7 +14,7 @@ USER_TOKEN=${INPUT_USER_TOKEN:-user.name#org.tld:1234567890123}
 WEBHOOK_URL=${INPUT_WEBHOOK_URL:-https://outlook.office.com/webhook/some-id}
 
 # Changelog persistance to MS Teams
-TITLE=$(basename `git rev-parse --show-toplevel`)
+TITLE=$(git config --local remote.origin.url)
 COLOR='ff0000'
 
 cd ${GITHUB_WORKSPACE}/${source}
