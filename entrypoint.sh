@@ -66,6 +66,9 @@ for i in $(echo $GIT_JIRA_COMMITS | sed "s/ / /g"); do SUMMARYLOG="$SUMMARYLOG \
 CHANGELOGENTRYS=$(comm -12 <(echo $GIT_JIRA_COMMITS | tr ' ' '\n' | sort) <(echo $TICKETS | tr ' ' '\n' | sort))
 CHANGELOGENTRYS=$(sed 's/^/https:\/\/enersis.atlassian.net\/browse\//; s/$//' <(echo "$CHANGELOGENTRYS") | awk '$0="<a href="$0">"$0"</a>\r\n"')
 
+echo "Jira entrys found:"
+echo ${#GIT_COMMITS} 
+
 # genrate changelog
 CHANGELOG=$(cat << EOF
 ****************CHANGELOG*******************
