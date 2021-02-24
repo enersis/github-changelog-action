@@ -2,6 +2,10 @@
 
 
 This action generates a changelog with combined information of commit-tags and Jira Storys.
+It reads the commit logs and searches them for possible Jira tickets aka `[ABC-123]`.
+The given SJira-Storys from the commits are then taken to search in the list of Jira Storys at attlasian.
+Out of this a changelog is generated with Jira, Storys as Link, the Story Titles and commits.
+This Changelog is then sended to a MS Teams Webhook.
 
 ## Inputs
 
@@ -43,8 +47,37 @@ This action generates a changelog with combined information of commit-tags and J
 
 The changelog
 
-## Example usage
+## Usage
 
-uses: enersis/github-changelog-action@master
-with:
-  max_jira_entrys: '10000'
+```yaml
+name: Write changelog
+on:
+  push:
+      branches:
+        - master
+
+jobs:
+  generate_changelog_master:
+    runs-on: ubuntu-latest
+    name: Changelog
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          # Fetch all history for all tags and branches
+          fetch-depth: 0
+      - run: git fetch --all
+
+      - name: Changelog
+        id: changelog
+        uses: enersis/github-changelog-action@master
+        with:
+          MAX_JIRA_ENTRYS: 9000
+          JIRA_PROJECTS: 'XYZ'
+          JIRA_HOST : 'yourcompany.atlassian.net'
+          GIT_RANGE_FROM: 'origin/develop'
+          GIT_RANGE_TO: 'origin/master'
+          USER_TOKEN: ${{ secrets.YOUR_JIRA_TOKEN_STORED_AS_SECRET }}
+          WEBHOOK_URL: ${{ secrets.YOUR_TEAMS_WEBHOOK_STORED_AS_SECRET }}
+
+```
