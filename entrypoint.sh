@@ -13,6 +13,10 @@ DRY_RUN=${INPUT_DRY_RUN:-false}
 USER_TOKEN=${INPUT_USER_TOKEN:-user.name#org.tld:1234567890123}
 WEBHOOK_URL=${INPUT_WEBHOOK_URL:-https://outlook.office.com/webhook/some-id}
 
+# Changelog persistance to MS Teams
+TITLE=$(basename `git rev-parse --show-toplevel`)
+COLOR='ff0000'
+
 cd ${GITHUB_WORKSPACE}/${source}
 
 echo -e "\t*** CONFIGURATION ***"
@@ -25,9 +29,6 @@ echo -e "\tdry_run: ${DRY_RUN}"
 echo -e "\tuser_token: ${USER_TOKEN}"
 
 REQ_URL="http://${REQ_HOST}/rest/api/2/search?jql=project+in($JIRA_PROJECTS)%20and%20issueType%20in%20(bug,%20story)&maxResults=49&fields=id,key,summary&startAt="
-# Changelog persistance to MS Teams
-TITLE=$(basename `git rev-parse --show-toplevel`)
-COLOR='ff0000'
 
 # Determine how many Storys are found under the given projects
 if curl --silent -L -u "$USER_TOKEN" -X GET -H "Content-Type: application/json" -o maxentrys.json "${REQ_URL}10000"; then
