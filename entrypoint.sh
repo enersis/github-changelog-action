@@ -57,7 +57,7 @@ echo "$SUMMARY" > summary.txt
 
 # Read the git commits from log and find Jira issues in the title-line
 GIT_COMMITS=$(git log --pretty=oneline "${GIT_RANGE_TO}".."${GIT_RANGE_FROM}" | grep -e '[A-Z|0-9]\+-[0-9]\+' -o | sort -u)
-GIT_LOG=$(git log --pretty=oneline --no-merges "${GIT_RANGE_TO}".."${GIT_RANGE_FROM}" | awk '$0=$0"\r\n"')
+GIT_LOG=$(git log --abbrev-commit --pretty=oneline --no-merges "${GIT_RANGE_TO}".."${GIT_RANGE_FROM}" | awk '$0=$0"\r\n"')
 GIT_JIRA_COMMITS=$(echo "$GIT_COMMITS"|tr " " "\n"|sort|uniq|tr "\n" " ")
 
 # Search the found tickets of commits in the summary list
