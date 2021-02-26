@@ -77,10 +77,10 @@ echo "Jira entrys found: ${FOUND_ENTRYS}"
 CHANGELOG=$(cat << EOF
 ****************CHANGELOG*******************
 
-There are at the moment <b> $MAXENTRYS </b> Storys in the given Project(s).
-The Projects are: <b> $JIRA_PROJECTS </b>
-The last commit has been done by: <b> $GIT_LAST_AUTHOR </b>
-This version is tagged by: <a href=${TITLE}/releases/tag/>$GIT_LAST_TAG</a>
+There are at the moment <b> $MAXENTRYS </b> Storys in the given Project(s).\r\n
+The Projects are: <b> $JIRA_PROJECTS </b> \r\n
+The last commit has been done by: <b> $GIT_LAST_AUTHOR </b>\r\n
+This version is tagged by: <a href=${TITLE}/releases/tag/$GIT_LAST_TAG>$GIT_LAST_TAG</a> \r\n
 
 ********************
 **Edited JIRA Storys in this Repository:**\r\n
