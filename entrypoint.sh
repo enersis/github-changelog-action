@@ -64,7 +64,7 @@ GIT_LAST_TAG=$(git describe --tags --abbrev=0)
 
 # Search the found tickets of commits in the summary list
 for i in $(echo $GIT_JIRA_COMMITS | sed "s/ / /g"); do SUMMARYLOG="$SUMMARYLOG \n $(grep $i summary.txt)\r\n"; done
-SUMMARYLOG="${(@qq)SUMMARYLOG}"
+SUMMARYLOG="${SUMMARYLOG//\"}"
 
 # Filter Jira-Storys of git commits by existing jira storys
 CHANGELOGENTRYS=$(comm -12 <(echo $GIT_JIRA_COMMITS | tr ' ' '\n' | sort) <(echo $TICKETS | tr ' ' '\n' | sort))
