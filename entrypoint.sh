@@ -151,7 +151,6 @@ then
 fi 
 
 # Send changelog to NS Teams
-echo "${TEAMS_JSON}"
 curl -H "Content-Type: application/json" -d "${TEAMS_JSON}" "${WEBHOOK_URL}"
 
 # Handle exit status
