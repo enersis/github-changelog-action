@@ -21,7 +21,7 @@ cd ${GITHUB_WORKSPACE}/${source}
 
 echo -e "\t*** CONFIGURATION ***"
 echo -e "\tmax_jira_entrys: ${MAXENTRYS}"
-echo -e "\tjira_projects: ${JIRA_PROJECTS}"
+echo -e "\tjira_projects: ${JIRA_PROJECTS/ON/'ON'}"
 echo -e "\tjira_host: ${REQ_HOST}"
 echo -e "\tgit_range_from: ${GIT_RANGE_FROM}"
 echo -e "\tgit_range_to: ${GIT_RANGE_TO}"
@@ -29,6 +29,7 @@ echo -e "\tdry_run: ${DRY_RUN}"
 echo -e "\tuser_token: ${USER_TOKEN}"
 
 REQ_URL="http://${REQ_HOST}/rest/api/2/search?jql=project+in($JIRA_PROJECTS)%20and%20issueType%20in%20(bug,%20story)&maxResults=49&fields=id,key,summary&startAt="
+echo "Sending Jira Request to: $REQ_URL"
 
 # Determine how many Storys are found under the given projects
 if curl --silent -L -u "$USER_TOKEN" -X GET -H "Content-Type: application/json" -o maxentrys.json "${REQ_URL}10000"; then
