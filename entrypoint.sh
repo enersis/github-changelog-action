@@ -29,7 +29,7 @@ echo -e "\tdry_run: ${DRY_RUN}"
 echo -e "\tuser_token: ${USER_TOKEN}"
 
 
-JIRA_PROJECTS=${JIRA_PROJECTS/ON/'"ON"'}
+JIRA_PROJECTS=${JIRA_PROJECTS/ON/'''ON''''}
 
 REQ_URL="http://${REQ_HOST}/rest/api/2/search?jql=project+in($JIRA_PROJECTS)%20and%20issueType%20in%20(bug,%20story)&maxResults=49&fields=id,key,summary&startAt="
 echo "Sending Jira Request to: $REQ_URL"
@@ -58,6 +58,8 @@ while [ $x -le $(( $MAXENTRYS - 50 )) ]; do
 x=$(( $x + 50 ))
 done
 echo "$SUMMARY" > summary.txt
+
+echo "Summary JIRA Entrys: $SUMMARY"
 
 # Read the git commits from log and find Jira issues in the title-line
 GIT_COMMITS=$(git log --pretty=oneline "${GIT_RANGE_TO}".."${GIT_RANGE_FROM}" | grep -e '[A-Z|0-9]\+-[0-9]\+' -o | sort -u)
