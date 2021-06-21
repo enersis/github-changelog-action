@@ -29,7 +29,7 @@ echo -e "\tdry_run: ${DRY_RUN}"
 echo -e "\tuser_token: ${USER_TOKEN}"
 
 
-JIRA_PROJECTS=${JIRA_PROJECTS/ON/'NON'}
+JIRA_PROJECTS=${JIRA_PROJECTS/ON/'"ON"'}
 
 REQ_URL="http://${REQ_HOST}/rest/api/2/search?jql=project+in($JIRA_PROJECTS)%20and%20issueType%20in%20(bug,%20story)&maxResults=49&fields=id,key,summary&startAt="
 echo "Sending Jira Request to: $REQ_URL"
