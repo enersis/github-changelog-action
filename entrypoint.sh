@@ -68,11 +68,11 @@ GIT_LAST_TAG=$(git describe --tags --abbrev=0)
 
 echo -e "git commit and Jira informations:"
 echo -e "*********************************"
-echo -e "GIT_COMMITS: $GIT_COMMITS"
-echo -e "GIT_LOG: $GIT_LOG"
-echo -e "GIT_JIRA_COMMITS: $GIT_JIRA_COMMITS"
-echo -e "GIT_LAST_AUTHOR: $GIT_LAST_AUTHOR"
-echo -e "GIT_LAST_TAG: $GIT_LAST_TAG"
+echo -e "GIT_COMMITS: ${GIT_COMMITS}"
+echo -e "GIT_LOG: ${GIT_LOG}"
+echo -e "GIT_JIRA_COMMITS: ${GIT_JIRA_COMMITS}"
+echo -e "GIT_LAST_AUTHOR: ${GIT_LAST_AUTHOR}"
+echo -e "GIT_LAST_TAG: ${GIT_LAST_TAG}"
 
 # Search the found tickets of commits in the summary list
 for i in $(echo $GIT_JIRA_COMMITS | sed "s/ / /g"); do SUMMARYLOG="$SUMMARYLOG \n $(grep $i summary.txt)\r\n"; done
