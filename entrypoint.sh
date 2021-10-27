@@ -2,6 +2,7 @@
 
 set -o pipefail
 
+BASE=$(git rev-parse --absolute-git-dir)/..
 
 # config
 MAXENTRYS=${INPUT_MAX_JIRA_ENTRYS:-10000}
@@ -65,6 +66,8 @@ GIT_LOG=$(git log --abbrev-commit --pretty=format:"<a href=${TITLE}/commit/%H>%a
 GIT_JIRA_COMMITS=$(echo "$GIT_COMMITS"|tr " " "\n"|sort|uniq|tr "\n" " ")
 GIT_LAST_AUTHOR=$(git log -1 --pretty=format:'%an')
 GIT_LAST_TAG=$(git describe --tags --abbrev=0)
+
+GIT_LOG="$(echo -n "$GIT_LOG" | sed -e 's#["\\]#\\&#g')"
 
 echo -e "git commit and Jira informations:"
 echo -e "*********************************"
