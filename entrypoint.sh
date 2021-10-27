@@ -64,7 +64,7 @@ echo "Summary JIRA Entrys: $SUMMARY"
 GIT_COMMITS=$(git log --pretty=oneline "${GIT_RANGE_TO}".."${GIT_RANGE_FROM}" | grep -e '[A-Z|0-9]\+-[0-9]\+' -o | sort -u)
 GIT_LOG=$(git log --abbrev-commit --pretty=format:"<a href=${TITLE}/commit/%H>%an: (%h) %s</a>" --no-merges "${GIT_RANGE_TO}".."${GIT_RANGE_FROM}" | awk '$0=$0"\r\n"')
 GIT_JIRA_COMMITS=$(echo "$GIT_COMMITS"|tr " " "\n"|sort|uniq|tr "\n" " ")
-GIT_LAST_AUTHOR=$(git log -1 --pretty=format:'%an')
+GIT_LAST_AUTHOR=$(git log -1 --pretty=format:'%ae')
 GIT_LAST_TAG=$(git describe --tags --abbrev=0)
 
 GIT_LOG="$(echo -n "$GIT_LOG" | sed -e 's#["\\]#\\&#g')"
